@@ -1,10 +1,10 @@
-package com.lambdaschool.getjavaorders;
+package com.lambdaschool.javaordersapp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class GetjavaordersApplicationTests
+class JavaOrdersApplicationTests
 {
 
     @Test
