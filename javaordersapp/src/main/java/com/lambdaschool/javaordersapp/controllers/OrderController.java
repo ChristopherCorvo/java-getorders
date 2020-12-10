@@ -23,7 +23,7 @@ public class OrderController
     @GetMapping(value = "/order/{ordnum}",
                         produces = "application/json")
     public ResponseEntity<?> getOrdersById(
-        @PathVariable Long ordnum)
+        @PathVariable long ordnum)
     {
         Order o = orderServices.findOrdersById(ordnum);
         return new ResponseEntity<>(o, HttpStatus.OK);

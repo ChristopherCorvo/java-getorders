@@ -37,7 +37,7 @@ public class CustomerController
         produces = "application/json")
     public ResponseEntity<?> getCustomerById(
         @PathVariable
-            Long custcode)
+            long custcode)
     {
         Customer c = customerServices.findCustomersById(custcode);
         return new ResponseEntity<>(c,

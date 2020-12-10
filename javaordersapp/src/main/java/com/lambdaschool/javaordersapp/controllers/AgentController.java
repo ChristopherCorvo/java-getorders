@@ -24,7 +24,7 @@ public class AgentController
         produces = "application/json")
     public ResponseEntity<?> getAgentById(
         @PathVariable
-            Long agentcode)
+            long agentcode)
     {
         Agent a = agentServices.findAgentById(agentcode);
         return new ResponseEntity<>(a, HttpStatus.OK);
