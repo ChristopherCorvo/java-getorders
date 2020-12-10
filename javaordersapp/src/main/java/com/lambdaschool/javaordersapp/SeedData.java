@@ -2,14 +2,14 @@ package com.lambdaschool.javaordersapp;
 
 import com.github.javafaker.Faker;
 import com.lambdaschool.javaordersapp.models.Agent;
-import com.lambdaschool.javaordersapp.models.Customers;
-import com.lambdaschool.javaordersapp.models.Orders;
-import com.lambdaschool.javaordersapp.models.Payments;
-import com.lambdaschool.javaordersapp.repositories.AgentsRepository;
-import com.lambdaschool.javaordersapp.repositories.CustomersRepository;
+import com.lambdaschool.javaordersapp.models.Customer;
+import com.lambdaschool.javaordersapp.models.Order;
+import com.lambdaschool.javaordersapp.models.Payment;
+import com.lambdaschool.javaordersapp.respositories.AgentRepository;
+import com.lambdaschool.javaordersapp.respositories.CustomerRepository;
 
-import com.lambdaschool.javaordersapp.repositories.OrdersRepository;
-import com.lambdaschool.javaordersapp.repositories.PaymentsRepository;
+import com.lambdaschool.javaordersapp.respositories.OrderRepository;
+import com.lambdaschool.javaordersapp.respositories.PaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -29,25 +29,25 @@ public class SeedData
      * Connects the customer table to this SeedData method
      */
     @Autowired
-    private CustomersRepository custrepos;
+    private CustomerRepository custrepos;
 
     /**
      * Connects the agents table to this SeedData method
      */
     @Autowired
-    private AgentsRepository agentrepos;
+    private AgentRepository agentrepos;
 
     /**
      * Connects the orders table to this SeedData method
      */
     @Autowired
-    private OrdersRepository ordersrepos;
+    private OrderRepository ordersrepos;
 
     /**
      * Connects the payment table to this SeedData method
      */
     @Autowired
-    private PaymentsRepository paymentrepos;
+    private PaymentRepository paymentrepos;
 
     /**
      * A Random generator is needed to randomly generate faker data.
@@ -68,10 +68,10 @@ public class SeedData
     public void run(String[] args) throws
                                    Exception
     {
-        Payments pay1 = new Payments("Cash");
-        Payments pay2 = new Payments("Gift Card");
-        Payments pay3 = new Payments("Credit Card");
-        Payments pay4 = new Payments("Mobile Pay");
+        Payment pay1 = new Payment("Cash");
+        Payment pay2 = new Payment("Gift Card");
+        Payment pay3 = new Payment("Credit Card");
+        Payment pay4 = new Payment("Mobile Pay");
 
         pay1 = paymentrepos.save(pay1);
         pay2 = paymentrepos.save(pay2);
@@ -139,7 +139,7 @@ public class SeedData
             "008-22536178",
             "");
 
-        Customers c01 = new Customers("Holmes",
+        Customer c01 = new Customer("Holmes",
             "London",
             "London",
             "UK",
@@ -150,7 +150,7 @@ public class SeedData
             4000.00,
             "BBBBBBB",
             a03);
-        Customers c02 = new Customers("Micheal",
+        Customer c02 = new Customer("Micheal",
             "New York",
             "New York",
             "USA",
@@ -161,7 +161,7 @@ public class SeedData
             6000.00,
             "CCCCCCC",
             a08);
-        Customers c03 = new Customers("Albert",
+        Customer c03 = new Customer("Albert",
             "New York",
             "New York",
             "USA",
@@ -172,7 +172,7 @@ public class SeedData
             6000.00,
             "BBBBSBB",
             a08);
-        Customers c04 = new Customers("Ravindran",
+        Customer c04 = new Customer("Ravindran",
             "Bangalore",
             "Bangalore",
             "India",
@@ -183,7 +183,7 @@ public class SeedData
             8000.00,
             "AVAVAVA",
             a11);
-        Customers c05 = new Customers("Cook",
+        Customer c05 = new Customer("Cook",
             "London",
             "London",
             "UK",
@@ -194,7 +194,7 @@ public class SeedData
             6000.00,
             "FSDDSDF",
             a06);
-        Customers c06 = new Customers("Stuart",
+        Customer c06 = new Customer("Stuart",
             "London",
             "London",
             "UK",
@@ -205,7 +205,7 @@ public class SeedData
             11000.00,
             "GFSGERS",
             a03);
-        Customers c07 = new Customers("Bolt",
+        Customer c07 = new Customer("Bolt",
             "New York",
             "New York",
             "USA",
@@ -216,7 +216,7 @@ public class SeedData
             3000.00,
             "DDNRDRH",
             a08);
-        Customers c08 = new Customers("Fleming",
+        Customer c08 = new Customer("Fleming",
             "Brisban",
             "Brisban",
             "Australia",
@@ -227,7 +227,7 @@ public class SeedData
             5000.00,
             "NHBGVFC",
             a05);
-        Customers c09 = new Customers("Jacks",
+        Customer c09 = new Customer("Jacks",
             "Brisban",
             "Brisban",
             "Australia",
@@ -238,7 +238,7 @@ public class SeedData
             7000.00,
             "WERTGDF",
             a05);
-        Customers c10 = new Customers("Yearannaidu",
+        Customer c10 = new Customer("Yearannaidu",
             "Chennai",
             "Chennai",
             "India",
@@ -249,7 +249,7 @@ public class SeedData
             8000.00,
             "ZZZZBFV",
             a10);
-        Customers c11 = new Customers("Sasikant",
+        Customer c11 = new Customer("Sasikant",
             "Mumbai",
             "Mumbai",
             "India",
@@ -260,7 +260,7 @@ public class SeedData
             11000.00,
             "147-25896312",
             a02);
-        Customers c12 = new Customers("Ramanathan",
+        Customer c12 = new Customer("Ramanathan",
             "Chennai",
             "Chennai",
             "India",
@@ -271,7 +271,7 @@ public class SeedData
             9000.00,
             "GHRDWSD",
             a10);
-        Customers c13 = new Customers("Avinash",
+        Customer c13 = new Customer("Avinash",
             "Mumbai",
             "Mumbai",
             "India",
@@ -282,7 +282,7 @@ public class SeedData
             9000.00,
             "113-12345678",
             a02);
-        Customers c14 = new Customers("Winston",
+        Customer c14 = new Customer("Winston",
             "Brisban",
             "Brisban",
             "Australia",
@@ -293,7 +293,7 @@ public class SeedData
             6000.00,
             "AAAAAAA",
             a05);
-        Customers c15 = new Customers("Karl",
+        Customer c15 = new Customer("Karl",
             "London",
             "London",
             "UK",
@@ -304,7 +304,7 @@ public class SeedData
             3000.00,
             "AAAABAA",
             a06);
-        Customers c16 = new Customers("Shilton",
+        Customer c16 = new Customer("Shilton",
             "Torento",
             "Torento",
             "Canada",
@@ -315,7 +315,7 @@ public class SeedData
             11000.00,
             "DDDDDDD",
             a04);
-        Customers c17 = new Customers("Charles",
+        Customer c17 = new Customer("Charles",
             "Hampshair",
             "Hampshair",
             "UK",
@@ -326,7 +326,7 @@ public class SeedData
             5000.00,
             "MMMMMMM",
             a09);
-        Customers c18 = new Customers("Srinivas",
+        Customer c18 = new Customer("Srinivas",
             "Bangalore",
             "Bangalore",
             "India",
@@ -337,7 +337,7 @@ public class SeedData
             9000.00,
             "AAAAAAB",
             a07);
-        Customers c19 = new Customers("Steven",
+        Customer c19 = new Customer("Steven",
             "San Jose",
             "San Jose",
             "USA",
@@ -348,7 +348,7 @@ public class SeedData
             3000.00,
             "KRFYGJK",
             a10);
-        Customers c20 = new Customers("Karolina",
+        Customer c20 = new Customer("Karolina",
             "Torento",
             "Torento",
             "Canada",
@@ -359,7 +359,7 @@ public class SeedData
             5000.00,
             "HJKORED",
             a04);
-        Customers c21 = new Customers("Martin",
+        Customer c21 = new Customer("Martin",
             "Torento",
             "Torento",
             "Canada",
@@ -370,7 +370,7 @@ public class SeedData
             8000.00,
             "MJYURFD",
             a04);
-        Customers c22 = new Customers("Ramesh",
+        Customer c22 = new Customer("Ramesh",
             "Mumbai",
             "Mumbai",
             "India",
@@ -381,7 +381,7 @@ public class SeedData
             12000.00,
             "Phone No",
             a02);
-        Customers c23 = new Customers("Rangarappa",
+        Customer c23 = new Customer("Rangarappa",
             "Bangalore",
             "Bangalore",
             "India",
@@ -392,7 +392,7 @@ public class SeedData
             12000.00,
             "AAAATGF",
             a01);
-        Customers c24 = new Customers("Venkatpati",
+        Customer c24 = new Customer("Venkatpati",
             "Bangalore",
             "Bangalore",
             "India",
@@ -403,7 +403,7 @@ public class SeedData
             12000.00,
             "JRTVFDD",
             a07);
-        Customers c25 = new Customers("Sundariya",
+        Customer c25 = new Customer("Sundariya",
             "Chennai",
             "Chennai",
             "India",
@@ -415,21 +415,21 @@ public class SeedData
             "PPHGRTS",
             a10);
 
-        Orders o01 = new Orders(1000.00,
+        Order o01 = new Order(1000.00,
             600.00,
             c13,
             "SOD");
         o01.getPayments()
             .add(pay1);
 
-        Orders o02 = new Orders(3000.00,
+        Order o02 = new Order(3000.00,
             500.00,
             c19,
             "SOD");
         o02.getPayments()
             .add(pay2);
 
-        Orders o03 = new Orders(4500.00,
+        Order o03 = new Order(4500.00,
             900.00,
             c07,
             "SOD");
@@ -438,63 +438,63 @@ public class SeedData
         o03.getPayments()
             .add(pay2);
 
-        Orders o04 = new Orders(2000.00,
+        Order o04 = new Order(2000.00,
             0.00,
             c16,
             "SOD");
         o04.getPayments()
             .add(pay4);
 
-        Orders o05 = new Orders(4000.00,
+        Order o05 = new Order(4000.00,
             600.00,
             c22,
             "SOD");
         o05.getPayments()
             .add(pay2);
 
-        Orders o06 = new Orders(2000.00,
+        Order o06 = new Order(2000.00,
             0.00,
             c12,
             "SOD");
         o06.getPayments()
             .add(pay3);
 
-        Orders o07 = new Orders(3500.00,
+        Order o07 = new Order(3500.00,
             2000.00,
             c02,
             "SOD");
         o07.getPayments()
             .add(pay4);
 
-        Orders o08 = new Orders(2500.00,
+        Order o08 = new Order(2500.00,
             400.00,
             c03,
             "SOD");
         o08.getPayments()
             .add(pay1);
 
-        Orders o09 = new Orders(500.00,
+        Order o09 = new Order(500.00,
             0.00,
             c23,
             "SOD");
         o09.getPayments()
             .add(pay3);
 
-        Orders o10 = new Orders(4000.00,
+        Order o10 = new Order(4000.00,
             700.00,
             c07,
             "SOD");
         o10.getPayments()
             .add(pay4);
 
-        Orders o11 = new Orders(1500.00,
+        Order o11 = new Order(1500.00,
             600.00,
             c08,
             "SOD");
         o11.getPayments()
             .add(pay2);
 
-        Orders o12 = new Orders(2500.00,
+        Order o12 = new Order(2500.00,
             0.00,
             c25,
             "SOD");
@@ -592,7 +592,7 @@ public class SeedData
             String tempPhone = dataFaker.phoneNumber()
                 .phoneNumber();
 
-            Customers fakeCustomer = new Customers(theName,
+            Customer fakeCustomer = new Customer(theName,
                 custcity,
                 tempWorkingarea,
                 tempCustcountry,
@@ -618,7 +618,7 @@ public class SeedData
                 String tempGetOrderdescription = dataFaker.lorem()
                     .characters();
 
-                Orders newOrder = new Orders(tempGetOrdamount,
+                Order newOrder = new Order(tempGetOrdamount,
                     tempGetAdvanceamount,
                     fakeCustomer,
                     tempGetOrderdescription);

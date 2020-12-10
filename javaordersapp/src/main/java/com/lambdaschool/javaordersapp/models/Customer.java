@@ -1,5 +1,7 @@
 package com.lambdaschool.javaordersapp.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,12 +33,14 @@ public class Customer
     // The joining field is agentcode.
     @ManyToOne
     @JoinColumn(name = "agentcode", nullable = false) // Joining tables on the agent code field
-    private Agent agents; //what is this doing?
+    @JsonIgnoreProperties(value = "customers", allowSetters = true)
+    private Agent agent; //this field is the key that connects Customer and Agent
 
     // Creating association between customer table and order table
-    @OneToMany(mappedBy = "customers",
+    @OneToMany(mappedBy = "customer",
                 cascade = CascadeType.ALL,
                 orphanRemoval = true)
+    @JsonIgnoreProperties(value = "customers", allowSetters = true)
     private List<Order> orders = new ArrayList<>();
 
     // --------- Constructors ----------
@@ -57,7 +61,7 @@ public class Customer
         double paymentamt,
         double outstandingamt,
         String phone,
-        Agent agents)
+        Agent agent)
     {
         this.custname = custname;
         this.custcity = custcity;
@@ -69,7 +73,7 @@ public class Customer
         this.paymentamt = paymentamt;
         this.outstandingamt = outstandingamt;
         this.phone = phone;
-        this.agents = agents;
+        this.agent = agent;
     }
 
     // ----------- Getters and Setters ----------
@@ -186,11 +190,11 @@ public class Customer
 
     public Agent getAgents()
     {
-        return agents;
+        return agent;
     }
 
-    public void setAgents(Agent agents)
+    public void setAgents(Agent agent)
     {
-        this.agents = agents;
+        this.agent = agent;
     }
 }

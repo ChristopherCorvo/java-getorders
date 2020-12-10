@@ -24,7 +24,7 @@ public class Order
 
     // This creates a joining table between the Order Table and the Payment Table
     @ManyToMany()
-    @JoinTable(name = "orderpayments",
+    @JoinTable(name = "orderspayments",
                         joinColumns = @JoinColumn(name = "ordnum"), //this is the string needs to be the name of the primary key
                         inverseJoinColumns = @JoinColumn(name = "paymentid"))
     @JsonIgnoreProperties("orders") // Why are we doing this?
@@ -33,7 +33,8 @@ public class Order
     // This connects the Order Table to the Customer Table
     @ManyToOne()
     @JoinColumn(name = "custcode", nullable = false)
-    private Customer customers; // what is this ?
+    @JsonIgnoreProperties(value = "orders")
+    private Customer customer; // what is this ?
 
     // ------------ Constructors -------------
     public Order()
@@ -42,18 +43,20 @@ public class Order
     }
 
     // Constructor with parameters
+
     public Order(
         double ordamount,
         double advanceamount,
-        String orderdescription,
-        Customer customers)
+        Customer customer,
+        String orderdescription
+        )
     {
         this.ordamount = ordamount;
         this.advanceamount = advanceamount;
         this.orderdescription = orderdescription;
-        this.payments = payments;
-        this.customers = customers;
+        this.customer = customer;
     }
+
 
     // ---------- Getters and Setters ---------
 
@@ -109,11 +112,21 @@ public class Order
 
     public Customer getCustomers()
     {
-        return customers;
+        return customer;
     }
 
     public void setCustomers(Customer customers)
     {
-        this.customers = customers;
+        this.customer = customers;
+    }
+
+    public Customer getCustomer()
+    {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer)
+    {
+        this.customer = customer;
     }
 }

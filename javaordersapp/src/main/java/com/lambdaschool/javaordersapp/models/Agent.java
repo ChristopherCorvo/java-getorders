@@ -7,8 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "agents")
-//@JsonIgnoreProperties
+@Table(name = "agents") // If you were to use a "GET ALL" query you would get back all 'Agent' objects and we
+                        // would name it plural because it will be multiple 'Agent' objects.
+                        // We are making a series of 'Agent' objects that will be stored in the 'agents' table
+@JsonIgnoreProperties
 public class Agent
 {
     //Create Primary Key
@@ -27,10 +29,11 @@ public class Agent
     // we will call this joining table a combination of both table names.
 
     // Relationship between Agent table and customer table
-    @OneToMany(mappedBy = "agents",
+    @OneToMany(mappedBy = "agent", //'agent' is refering to the variable created in the customer table
                 cascade = CascadeType.ALL,
                 orphanRemoval = true)
-    private List<Customer> customers = new ArrayList<>();
+    @JsonIgnoreProperties(value = "agents", allowSetters = true)
+    private List<Customer> customer = new ArrayList<>();
 
     // ---------- Constructors ----------
 
@@ -41,6 +44,7 @@ public class Agent
 
     // Constructor with parameters
     // We dont include the primary key in the constructor
+    // Your primary key should not be included in the constructor
     public Agent(
         String agentname,
         String workingarea,
@@ -56,6 +60,7 @@ public class Agent
     }
 
     // ----------- Getters and Setters -----------
+    // Remember to make a getter and setter for the primary key
 
     public long getAgentcode()
     {
@@ -115,5 +120,15 @@ public class Agent
     public void setCountry(String country)
     {
         this.country = country;
+    }
+
+    public List<Customer> getCustomer()
+    {
+        return customer;
+    }
+
+    public void setCustomer(List<Customer> customer)
+    {
+        this.customer = customer;
     }
 }

@@ -16,8 +16,8 @@ public class Payment
     // -------- Table Fields ----------
     private long paymentid; // primary key
 
-    @Column(nullable = false,
-            unique = true)
+//    @Column(nullable = false,
+//            unique = true)
     private String type;
 
     // ------- Association --------
@@ -68,4 +68,6 @@ public class Payment
     {
         this.orders = orders;
     }
+
+
 }
