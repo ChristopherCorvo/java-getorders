@@ -8,37 +8,36 @@ import java.util.Set;
 
 @Entity
 @Table(name = "payments")
-public class Payments
+public class Payment
 {
     // Create primary key
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    // table fields
+    // -------- Table Fields ----------
     private long paymentid; // primary key
 
     @Column(nullable = false,
             unique = true)
     private String type;
 
-    // ------ Associations --------
+    // ------- Association --------
     @ManyToMany(mappedBy = "payments")
     @JsonIgnoreProperties("payments")
-    private Set<Orders> orders = new HashSet<>();
+    private Set<Order> orders = new HashSet<>();
 
-    // ----- Constructors -----
-
-    public Payments()
+    // ----------- Constructors -----------
+    public Payment()
     {
         // default constructor for JPA
     }
 
-    // constructor with parameters
-    public Payments(String type)
+    // constructor with Parameters
+    public Payment(String type)
     {
         this.type = type;
     }
 
-    // ------- Getters and Setters -----
+    // ----------- Getters and Setters ---------
 
     public long getPaymentid()
     {
@@ -60,12 +59,12 @@ public class Payments
         this.type = type;
     }
 
-    public Set<Orders> getOrders()
+    public Set<Order> getOrders()
     {
         return orders;
     }
 
-    public void setOrders(Set<Orders> orders)
+    public void setOrders(Set<Order> orders)
     {
         this.orders = orders;
     }

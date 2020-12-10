@@ -1,21 +1,20 @@
 package com.lambdaschool.javaordersapp.models;
 
-import org.aspectj.weaver.loadtime.Agent;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "customers")
-public class Customers
+public class Customer
 {
-    //generate primary key
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) // this is boilerplate
-    // table fields
-    private long custcode;
 
+    // @Id and @GeneratedValue help set the primary key
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO) // standard
+    private long custcode; // primary key
+
+    // ------ Table Fields ------
     private String custname;
     private String custcity;
     private String workingarea;
@@ -27,27 +26,27 @@ public class Customers
     private double outstandingamt;
     private String phone;
 
-//    private long agentcode; // foreign key (one agent to many customers) not null
-
-    // ------- Associations --------
-    // This is creating an association between customers and agents table
-    // the joining field is agentcode
+    // -------- Association Fields ---------
+    // Creating association between Customer Table and Agent Table.
+    // The joining field is agentcode.
     @ManyToOne
-    @JoinColumn(name = "agentcode", nullable = false)
-    private Agents agents;
+    @JoinColumn(name = "agentcode", nullable = false) // Joining tables on the agent code field
+    private Agent agents; //what is this doing?
 
+    // Creating association between customer table and order table
     @OneToMany(mappedBy = "customers",
                 cascade = CascadeType.ALL,
                 orphanRemoval = true)
-    private List<Orders> orders = new ArrayList<>();
-    // ----- Constructors ------
-    public Customers()
+    private List<Order> orders = new ArrayList<>();
+
+    // --------- Constructors ----------
+    public Customer()
     {
         // default constructor for JPA
     }
 
-    // Constructor with parameters
-    public Customers(
+    // constructor with parameters
+    public Customer(
         String custname,
         String custcity,
         String workingarea,
@@ -58,8 +57,7 @@ public class Customers
         double paymentamt,
         double outstandingamt,
         String phone,
-        Agents agents
-        )
+        Agent agents)
     {
         this.custname = custname;
         this.custcity = custcity;
@@ -74,9 +72,7 @@ public class Customers
         this.agents = agents;
     }
 
-
-    // -------- Getters and Setters --------
-
+    // ----------- Getters and Setters ----------
 
     public long getCustcode()
     {
@@ -138,16 +134,6 @@ public class Customers
         this.grade = grade;
     }
 
-    public String getPhone()
-    {
-        return phone;
-    }
-
-    public void setPhone(String phone)
-    {
-        this.phone = phone;
-    }
-
     public double getOpeningamt()
     {
         return openingamt;
@@ -188,5 +174,23 @@ public class Customers
         this.outstandingamt = outstandingamt;
     }
 
+    public String getPhone()
+    {
+        return phone;
+    }
 
+    public void setPhone(String phone)
+    {
+        this.phone = phone;
+    }
+
+    public Agent getAgents()
+    {
+        return agents;
+    }
+
+    public void setAgents(Agent agents)
+    {
+        this.agents = agents;
+    }
 }

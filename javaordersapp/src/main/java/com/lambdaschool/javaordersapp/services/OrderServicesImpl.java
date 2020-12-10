@@ -1,5 +1,5 @@
 package com.lambdaschool.javaordersapp.services;
 
-public class CustomerServicesImpl
+public class OrderServicesImpl
 {
 }

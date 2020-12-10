@@ -1,61 +1,62 @@
-// Note: This is the driver table i.e parent table
-
 package com.lambdaschool.javaordersapp.models;
-// ---- Auto Imports ------
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "names")
-public class Agents
+@Table(name = "agents")
+//@JsonIgnoreProperties
+public class Agent
 {
-    // @Id and @GeneratedValue help set the primary key
+    //Create Primary Key
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) // this is standard code
-    // table fields
-    private long agentcode; //primary key not null
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long agentcode; // primary key nut null
+
     private String agentname;
     private String workingarea;
     private double commission;
     private String phone;
     private String country;
 
-
-    // ---------- Associations -----------
+    // ------- Association Fields ------
     // We are declaring associations between the children tables and the driver table
-    // we will call these joining tables a combination of both tables names
+    // we will call this joining table a combination of both table names.
 
-    // declares the relationship between Agents table && Customers
+    // Relationship between Agent table and customer table
     @OneToMany(mappedBy = "agents",
                 cascade = CascadeType.ALL,
                 orphanRemoval = true)
-    private List<Customers> customers = new ArrayList<>();
+    private List<Customer> customers = new ArrayList<>();
 
-    // Constructors
-    public Agents()
+    // ---------- Constructors ----------
+
+    public Agent()
     {
         // default constructor for JPA
     }
 
-    // constructor with parameters
-    public Agents(
+    // Constructor with parameters
+    // We dont include the primary key in the constructor
+    public Agent(
         String agentname,
         String workingarea,
         double commission,
         String phone,
-        String country
-        )
+        String country)
     {
+        this.agentname = agentname;
         this.workingarea = workingarea;
+        this.commission = commission;
         this.phone = phone;
         this.country = country;
-        this.commission = commission;
     }
 
-    // ---- Getter and Setters
+    // ----------- Getters and Setters -----------
+
     public long getAgentcode()
     {
         return agentcode;
@@ -86,6 +87,16 @@ public class Agents
         this.workingarea = workingarea;
     }
 
+    public double getCommission()
+    {
+        return commission;
+    }
+
+    public void setCommission(double commission)
+    {
+        this.commission = commission;
+    }
+
     public String getPhone()
     {
         return phone;
@@ -104,15 +115,5 @@ public class Agents
     public void setCountry(String country)
     {
         this.country = country;
-    }
-
-    public double getCommission()
-    {
-        return commission;
-    }
-
-    public void setCommission(double commission)
-    {
-        this.commission = commission;
     }
 }
