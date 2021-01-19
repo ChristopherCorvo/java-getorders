@@ -16,8 +16,7 @@ public class Payment
     // -------- Table Fields ----------
     private long paymentid; // primary key
 
-//    @Column(nullable = false,
-//            unique = true)
+
     private String type;
 
     // ------- Association --------

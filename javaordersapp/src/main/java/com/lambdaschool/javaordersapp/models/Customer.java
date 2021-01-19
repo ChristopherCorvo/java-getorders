@@ -33,14 +33,14 @@ public class Customer
     // The joining field is agentcode.
     @ManyToOne
     @JoinColumn(name = "agentcode", nullable = false) // Joining tables on the agent code field
-    @JsonIgnoreProperties(value = "customers", allowSetters = true)
+    @JsonIgnoreProperties(value = "customer", allowSetters = true)
     private Agent agent; //this field is the key that connects Customer and Agent
 
     // Creating association between customer table and order table
     @OneToMany(mappedBy = "customer",
                 cascade = CascadeType.ALL,
                 orphanRemoval = true)
-    @JsonIgnoreProperties(value = "customers", allowSetters = true)
+    @JsonIgnoreProperties(value = "customer", allowSetters = true)
     private List<Order> orders = new ArrayList<>();
 
     // --------- Constructors ----------
